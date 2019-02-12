@@ -1,0 +1,19 @@
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <!--contextConfigLocation：指定springmvc配置的加载位置，如果不指定则默认加载WEB-INF/[DispatcherServlet 的Servlet 名字]-servlet.xml。-->
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc-servlet.xml</param-value>
+    </init-param>
+    <!--表示servlet随服务启动-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <!--以.action结尾的请求交给DispatcherServlet处理-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>

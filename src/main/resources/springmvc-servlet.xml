@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 组件扫描 ： 扫描 @component 、@controller、@service、@repository 的注解-->
+    <context:component-scan base-package="springmvc.controller" />
+
+    <!--注解开发-->
+    <!-- <mvc:annotation-driven /> 默认注册了注解映射器和注解适配器等bean。 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- 用于返回json格式的数据 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 配置处理器映射器 -->
+    <!-- 根据bean的name进行查找Handler 将action的url配置在bean的name中 -->
+    <!--BeanNameUrlHandlerMapping：表示将定义的Bean名字作为请求的url，需要将编写的controller在spring容器中进行配置，且指定bean的name为请求的url，且必须以.action结尾。-->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+    <!--HandlerMapping 给前端控制器返回一个HandlerExecutionChain 对象（包含一个Handler (后端控制器)对象、多个HandlerInterceptor 拦截器）对象。-->
+
+    <!-- 配置处理器适配器.-->
+    <!--SimpleControllerHandlerAdapter：即简单控制器处理适配器，所有实现了org.springframework.web.servlet.mvc.Controller 接口的Bean作为Springmvc的后端控制器。-->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+
+    <!-- 配置视图解析器 -->
+    <!--InternalResourceViewResolver：支持JSP视图解析.-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--viewClass：JstlView表示JSP模板页面需要使用JSTL标签库，所以classpath必须包含jstl的相关jar包；-->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <!--prefix 和suffix：查找视图页面的前缀和后缀，最终视图的址为：前缀+逻辑视图名+后缀，逻辑视图名需要在controller中返回ModelAndView指定，比如逻辑视图名为hello，则最终返回的jsp视图地址“WEB-INF/jsp/hello.jsp”-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 见 BeanNameUrlHandlerMapping -->
+    <!-- 后端控制器配置 后端控制器开发见HelloWorldController-->
+    <!-- 前边配置的BeanNameUrlHandlerMapping，表示如过请求的URL为“上下文/hello.action”，则将会交给该Bean进行处理。 -->
+    <bean name="/hello.action" class="springmvc.controller.hello.HelloWorldController"/>
+</beans>
