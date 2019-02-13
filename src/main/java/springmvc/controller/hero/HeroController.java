@@ -1,20 +1,23 @@
 package springmvc.controller.hero;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springmvc.model.Hero;
+import springmvc.service.HeroService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping(value="/hero")
 public class HeroController {
+    @Autowired
+    public HeroService heroService;
 
     //{×××}占位符，请求的URL可以是“/useredit/001”或“/useredit/abc”，通过在方法中使用@PathVariable 获取{×××}中的×××变量。
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
@@ -31,15 +34,7 @@ public class HeroController {
     @ResponseBody
     public List<Hero> getHeroesList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("getHeroes");
-        List<Hero> list = new ArrayList<>();
-        Hero hero = new Hero();
-        hero.setId(1);
-        hero.setName("test1");
-        Hero hero2 = new Hero();
-        hero2.setId(2);
-        hero2.setName("test2");
-        list.add(hero);
-        list.add(hero2);
+        List<Hero> list = heroService.getHeroList();
         return list;
     }
 

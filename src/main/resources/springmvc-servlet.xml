@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 组件扫描 ： 扫描 @component 、@controller、@service、@repository 的注解-->
-    <context:component-scan base-package="springmvc.controller" />
+    <context:component-scan base-package="springmvc" />
 
     <!--注解开发-->
     <!-- <mvc:annotation-driven /> 默认注册了注解映射器和注解适配器等bean。 -->
