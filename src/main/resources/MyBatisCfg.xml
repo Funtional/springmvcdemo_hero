@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 已废弃！！！！！！！！！！！！！！！！！！！！ -->
+
     <!-- 指定数据库连接信息的位置 -->
     <properties resource="db.properties"></properties>
     <!--类型别名，默认引入springmvc.model下的所有类 -->

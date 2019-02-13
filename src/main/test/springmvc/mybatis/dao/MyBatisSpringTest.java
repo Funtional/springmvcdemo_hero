@@ -16,7 +16,8 @@ public class MyBatisSpringTest {
         //初始化容器
         ApplicationContext ctx=new ClassPathXmlApplicationContext("springmvc-servlet.xml");
         //获得bean
-        HeroDao heroDao=ctx.getBean("heroDao",HeroDao.class);
+        //HeroDao heroDao=ctx.getBean("heroDao",HeroDao.class);
+        HeroDao heroDao=ctx.getBean(HeroDao.class);
         //访问数据库
         List<Hero> heroList=heroDao.getHeroList();
         assertNotNull(heroList);
