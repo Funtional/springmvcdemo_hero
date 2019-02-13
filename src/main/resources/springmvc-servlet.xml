@@ -42,4 +42,28 @@
     <!-- 后端控制器配置 后端控制器开发见HelloWorldController-->
     <!-- 前边配置的BeanNameUrlHandlerMapping，表示如过请求的URL为“上下文/hello.action”，则将会交给该Bean进行处理。 -->
     <bean name="/hello.action" class="springmvc.controller.hello.HelloWorldController"/>
+
+    <!--1定义一个jdbc数据源，创建一个驱动管理数据源的bean -->
+    <bean id="jdbcDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatisdemo" />
+        <property name="username" value="root" />
+        <property name="password" value="admin" />
+    </bean>
+
+    <!--2创建一个sql会话工厂bean，指定数据源-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="jdbcDataSource" /><!-- 指定数据源 -->
+        <property name="configLocation" value="classpath:MyBatisCfg.xml"></property> <!-- 指定配置文件 -->
+    </bean>
+
+    <!--3创建一个booTypeDAO-->
+    <bean id="heroDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <!--指定映射文件 -->
+        <property name="mapperInterface" value="springmvc.dao.HeroDao"></property>
+        <!-- 指定sql会话工厂-->
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+
 </beans>
