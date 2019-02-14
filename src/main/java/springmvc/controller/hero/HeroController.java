@@ -24,9 +24,7 @@ public class HeroController {
     @ResponseBody
     public Hero getHeroDetail(@PathVariable int id) throws Exception {
         System.out.println("getHero");
-        Hero hero = new Hero();
-        hero.setId(id);
-        hero.setName("test");
+        Hero hero = heroService.getHeroDetail(id);
         return hero;
     }
 

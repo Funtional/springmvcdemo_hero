@@ -21,7 +21,7 @@ public class HeroServiceImpl implements HeroService {
 
     @Override
     public Hero getHeroDetail(int id) {
-        return null;
+        return heroDao.getHero(id);
     }
 
     @Override
