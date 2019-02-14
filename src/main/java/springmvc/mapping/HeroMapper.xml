@@ -13,4 +13,24 @@
     <select id="getHero" parameterType="java.lang.Integer" resultType="Hero">
 		select id,name from hero WHERE id = #{id};
 	</select>
+
+    <!-- 保存操作
+		insert元素:
+			useGeneratedKeys属性:是否需要返回自动生成的主键
+			keyProperty:把自动生成的主键值设置到对象的哪一个属性上(OID)
+	 -->
+    <insert id="addHero" useGeneratedKeys="true" keyProperty="id"
+            parameterType="Hero">
+		INSERT INTO hero (id,name) VALUES(#{id},#{name})
+	</insert>
+
+    <!-- 更改操作 -->
+    <update id="updateHero" parameterType="Hero">
+		UPDATE hero SET id= #{id} ,name = #{name} WHERE id = #{id}
+	</update>
+
+    <!-- 删除操作 -->
+    <delete id="deleteHero" parameterType="java.lang.Integer">
+		DELETE FROM hero WHERE id = #{id}
+	</delete>
 </mapper>

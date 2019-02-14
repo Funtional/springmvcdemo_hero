@@ -17,10 +17,10 @@ public class HeroDAOImpl implements HeroDao {
     @Override
     public List<Hero> getHeroList() {
         //获得会话对象
-        SqlSession session=MyBatisUtil.getSession();
+        SqlSession session = MyBatisUtil.getSession();
         try {
             //通过MyBatis实现接口 HeroDao，返回实例
-            HeroDao heroDao=session.getMapper(HeroDao.class);
+            HeroDao heroDao = session.getMapper(HeroDao.class);
             return heroDao.getHeroList();
         } finally {
             session.close();
@@ -30,6 +30,48 @@ public class HeroDAOImpl implements HeroDao {
     @Override
     public Hero getHero(int id) {
         return null;
+    }
+
+    @Override
+    public boolean updateHero(Hero hero) {
+        //获得会话对象
+        SqlSession session = MyBatisUtil.getSession();
+        try {
+            //通过MyBatis实现接口 HeroDao，返回实例
+            HeroDao heroDao = session.getMapper(HeroDao.class);
+            heroDao.updateHero(hero);
+            return true;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean addHero(Hero hero) {
+        //获得会话对象
+        SqlSession session = MyBatisUtil.getSession();
+        try {
+            //通过MyBatis实现接口 HeroDao，返回实例
+            HeroDao heroDao = session.getMapper(HeroDao.class);
+            heroDao.addHero(hero);
+            return true;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean deleteHero(int id) {
+        //获得会话对象
+        SqlSession session = MyBatisUtil.getSession();
+        try {
+            //通过MyBatis实现接口 HeroDao，返回实例
+            HeroDao heroDao = session.getMapper(HeroDao.class);
+            heroDao.deleteHero(id);
+            return true;
+        } finally {
+            session.close();
+        }
     }
 
 

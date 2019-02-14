@@ -8,4 +8,10 @@ public interface HeroDao {
     List<Hero> getHeroList();
 
     Hero getHero(int id);
+
+    boolean updateHero(Hero hero);
+
+    boolean addHero(Hero hero);
+
+    boolean deleteHero(int id);
 }
