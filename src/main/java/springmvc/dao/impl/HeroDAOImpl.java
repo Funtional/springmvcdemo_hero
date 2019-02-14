@@ -33,42 +33,39 @@ public class HeroDAOImpl implements HeroDao {
     }
 
     @Override
-    public boolean updateHero(Hero hero) {
+    public int updateHero(Hero hero) {
         //获得会话对象
         SqlSession session = MyBatisUtil.getSession();
         try {
             //通过MyBatis实现接口 HeroDao，返回实例
             HeroDao heroDao = session.getMapper(HeroDao.class);
-            heroDao.updateHero(hero);
-            return true;
+            return heroDao.updateHero(hero);
         } finally {
             session.close();
         }
     }
 
     @Override
-    public boolean addHero(Hero hero) {
+    public int addHero(Hero hero) {
         //获得会话对象
         SqlSession session = MyBatisUtil.getSession();
         try {
             //通过MyBatis实现接口 HeroDao，返回实例
             HeroDao heroDao = session.getMapper(HeroDao.class);
-            heroDao.addHero(hero);
-            return true;
+            return heroDao.addHero(hero);
         } finally {
             session.close();
         }
     }
 
     @Override
-    public boolean deleteHero(int id) {
+    public int deleteHero(int id) {
         //获得会话对象
         SqlSession session = MyBatisUtil.getSession();
         try {
             //通过MyBatis实现接口 HeroDao，返回实例
             HeroDao heroDao = session.getMapper(HeroDao.class);
-            heroDao.deleteHero(id);
-            return true;
+            return heroDao.deleteHero(id);
         } finally {
             session.close();
         }

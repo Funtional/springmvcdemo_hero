@@ -31,7 +31,8 @@ public class HeroDaoImplTest {
 //        hero.setName("慕灵风");
         hero.setName("邃无端");
         hero.setId(7);
-        heroDao.addHero(hero);
+        int result = heroDao.addHero(hero);
+        System.out.println(result);
     }
 
     @Test
@@ -39,11 +40,13 @@ public class HeroDaoImplTest {
         Hero hero = new Hero();
         hero.setName("邃无端");
         hero.setId(7);
-        heroDao.updateHero(hero);
+        int result = heroDao.updateHero(hero);
+        System.out.println(result);
     }
 
     @Test
     public void deleteHeroTest() {
-        heroDao.deleteHero(7);
+        int result = heroDao.deleteHero(7);
+        System.out.println(result);
     }
 }

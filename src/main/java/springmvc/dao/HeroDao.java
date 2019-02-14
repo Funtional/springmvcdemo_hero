@@ -9,9 +9,12 @@ public interface HeroDao {
 
     Hero getHero(int id);
 
-    boolean updateHero(Hero hero);
+    /**
+     * 增删改接口默认返回int型参数，表示影响的行数。
+     */
+    int updateHero(Hero hero);
 
-    boolean addHero(Hero hero);
+    int addHero(Hero hero);
 
-    boolean deleteHero(int id);
+    int deleteHero(int id);
 }
