@@ -26,16 +26,19 @@ public class HeroServiceImpl implements HeroService {
 
     @Override
     public boolean updateHero(int id, Hero hero) {
-        return false;
+        heroDao.updateHero(hero);
+        return true;
     }
 
     @Override
     public boolean addHero(Hero hero) {
-        return false;
+        heroDao.addHero(hero);
+        return true;
     }
 
     @Override
     public boolean deleteHero(int id) {
-        return false;
+        heroDao.deleteHero(id);
+        return true;
     }
 }

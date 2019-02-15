@@ -2,10 +2,7 @@ package springmvc.controller.hero;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springmvc.model.Hero;
 import springmvc.service.HeroService;
 
@@ -36,24 +33,27 @@ public class HeroController {
         return list;
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public boolean addHero(@PathVariable int id){
-        System.out.println("addHero");
+    public boolean addHero(@RequestBody Hero hero) {
+        System.out.println("addHero: " + hero);
+        heroService.addHero(hero);
         return false;
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PATCH)
     @ResponseBody
-    public boolean updateHero(@PathVariable int id, Hero hero){
-        System.out.println("updateHero");
-        return false;
+    public boolean updateHero(@PathVariable int id, @RequestBody Hero hero) {
+        System.out.println("updateHero: " + hero);
+        heroService.updateHero(id, hero);
+        return true;
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public boolean deleteHero(@PathVariable int id){
-        System.out.println("deleteHero");
-        return false;
+        System.out.println("deleteHero: " + id);
+        heroService.deleteHero(id);
+        return true;
     }
 }
