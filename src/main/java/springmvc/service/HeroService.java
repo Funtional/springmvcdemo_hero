@@ -3,9 +3,10 @@ package springmvc.service;
 import springmvc.model.Hero;
 
 import java.util.List;
+import java.util.Map;
 
 public interface HeroService {
-    List<Hero> getHeroList();
+    List<Hero> getHeroList(Map paraMap);
 
     Hero getHeroDetail(int id);
 

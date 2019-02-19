@@ -3,9 +3,10 @@ package springmvc.dao;
 import springmvc.model.Hero;
 
 import java.util.List;
+import java.util.Map;
 
 public interface HeroDao {
-    List<Hero> getHeroList();
+    List<Hero> getHeroList(Map paramMap);
 
     Hero getHero(int id);
 

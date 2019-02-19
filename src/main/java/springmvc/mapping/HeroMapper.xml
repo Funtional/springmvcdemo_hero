@@ -3,8 +3,13 @@
 <!--命名空间应该是对应接口的包名+类名 -->
 <mapper namespace="springmvc.dao.HeroDao">
     <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
-    <select id="getHeroList" resultType="Hero">
-        select id,name from hero;
+    <select id="getHeroList" resultType="Hero" parameterType="java.util.Map">
+        select id,name from hero
+        <where>
+            <if test="name!=null">
+                and name like concat('%',#{name},'%')
+            </if>
+        </where>
     </select>
 
     <!-- select元素:专门用来做写查询的SQL. -id属性:唯一标识,用来表示某一条SQL语句 id属性和mapper的namespace唯一的表示了应用中的某一条SQL语句

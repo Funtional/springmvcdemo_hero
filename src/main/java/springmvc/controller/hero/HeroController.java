@@ -1,5 +1,6 @@
 package springmvc.controller.hero;
 
+import com.mysql.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,9 @@ import springmvc.service.HeroService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/hero")
@@ -27,9 +30,13 @@ public class HeroController {
 
     @RequestMapping(value="/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<Hero> getHeroesList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public List<Hero> getHeroesList(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String name) throws Exception {
         System.out.println("getHeroes");
-        List<Hero> list = heroService.getHeroList();
+        Map paraMap = new HashMap();
+        if (!StringUtils.isNullOrEmpty(name)) {
+            paraMap.put("name", name.trim());
+        }
+        List<Hero> list = heroService.getHeroList(paraMap);
         return list;
     }
 

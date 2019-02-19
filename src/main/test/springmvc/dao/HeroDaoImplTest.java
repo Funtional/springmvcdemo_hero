@@ -6,6 +6,7 @@ import org.junit.Test;
 import springmvc.dao.impl.HeroDAOImpl;
 import springmvc.model.Hero;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class HeroDaoImplTest {
@@ -18,7 +19,7 @@ public class HeroDaoImplTest {
 
     @Test
     public void getHeroListTest(){
-        List<Hero> heroList = heroDao.getHeroList();
+        List<Hero> heroList = heroDao.getHeroList(new HashMap());
         Assert.assertNotNull(heroList);
         for (Hero hero : heroList){
             System.out.println(hero);

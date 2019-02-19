@@ -6,6 +6,7 @@ import springmvc.model.Hero;
 import springmvc.util.MyBatisUtil;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 实现Hero类型数据访问
@@ -15,13 +16,13 @@ import java.util.List;
 public class HeroDAOImpl implements HeroDao {
 
     @Override
-    public List<Hero> getHeroList() {
+    public List<Hero> getHeroList(Map paramMap) {
         //获得会话对象
         SqlSession session = MyBatisUtil.getSession();
         try {
             //通过MyBatis实现接口 HeroDao，返回实例
             HeroDao heroDao = session.getMapper(HeroDao.class);
-            return heroDao.getHeroList();
+            return heroDao.getHeroList(paramMap);
         } finally {
             session.close();
         }

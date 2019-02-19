@@ -7,6 +7,7 @@ import springmvc.model.Hero;
 import springmvc.service.HeroService;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HeroServiceImpl implements HeroService {
@@ -15,8 +16,8 @@ public class HeroServiceImpl implements HeroService {
     public HeroDao heroDao;
 
     @Override
-    public List<Hero> getHeroList() {
-        return heroDao.getHeroList();
+    public List<Hero> getHeroList(Map paraMap) {
+        return heroDao.getHeroList(paraMap);
     }
 
     @Override

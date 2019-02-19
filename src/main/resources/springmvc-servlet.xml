@@ -67,7 +67,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 1指定数据源 -->
         <property name="dataSource" ref="jdbcDataSource" />
-        <!-- 2类型别名包，默认引入com.zhangguo.Spring61.entities下的所有类 -->
+        <!-- 2类型别名包，默认引入springmvc.model下的所有类 -->
         <property name="typeAliasesPackage" value="springmvc.model"></property>
         <!-- 3指定sql映射xml文件的路径 -->
         <property name="mapperLocations"
