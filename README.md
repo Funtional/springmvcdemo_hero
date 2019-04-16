@@ -1,0 +1,3 @@
+# springmvcdemo_hero
+起初只是spring mvc的一个helloworld的demo，后来在学习angular快速上手的hero编辑器的例子，需要做一个后端项目，就在此项目上继续拓展，同时也整合了mybatis。
+后面会把angular的学习项目代码上传，项目名就为angular-tour-of-heroes
